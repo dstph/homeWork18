@@ -50,3 +50,72 @@ twoArrays
 				console.log('I did it!');
 			}
 		)
+
+
+let input = document.querySelector('#promise');
+
+	input.addEventListener('change', () => {
+
+		let inputText = new Promise( (response, reject)=>{
+				setTimeout(
+					() => {
+					input.value.length > 0 ? response(input.value) : reject(input.value)
+				}, 10000)
+		});
+		
+		inputText
+				.then(
+					(data)=>{
+						console.log(data);
+					}
+				)
+				.finally(
+					() => {
+						input.value = '';
+					}
+				)
+	})
+
+let inputSecond = document.querySelector('#promiseSecond');
+
+	inputSecond.addEventListener('mousedown', () => {
+
+		let inputTextSecond = new Promise( (response, reject)=>{
+				setTimeout(
+					() => {
+					inputSecond.value.length > 0 ? response(inputSecond.value) : reject(inputSecond.value)
+				}, 10000)
+		});
+		
+		inputTextSecond
+				.then(
+					(data)=>{
+						console.log(data);
+					}
+				)
+				.finally(
+					() => {
+						inputSecond.value = '';
+					}
+				)
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
