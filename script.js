@@ -52,93 +52,113 @@
 // 		)
 
 
-let input = document.querySelector('#promise');
+// let input = document.querySelector('#promise');
 
-	input.addEventListener('change', () => {
+// 	input.addEventListener('change', () => {
 
-		let inputText = new Promise( (response, reject)=>{
-				setTimeout(
-					() => {
-					input.value.length > 0 ? response(input.value) : reject(input.value)
-				}, 10000)
-		});
+// 		let inputText = new Promise( (response, reject)=>{
+// 				setTimeout(
+// 					() => {
+// 					input.value.length > 0 ? response(input.value) : reject(input.value)
+// 				}, 10000)
+// 		});
 		
-		inputText
-				.then(
-					(data)=>{
-						console.log(data);
-					}
-				)
-				.finally(
-					() => {
-						input.value = '';
-					}
-				)
-	})
+// 		inputText
+// 				.then(
+// 					(data)=>{
+// 						console.log(data);
+// 					}
+// 				)
+// 				.finally(
+// 					() => {
+// 						input.value = '';
+// 					}
+// 				)
+// 	})
 
-let inputSecond = document.querySelector('#promiseSecond');
+// let inputSecond = document.querySelector('#promiseSecond');
 
-	inputSecond.addEventListener('mousedown', () => {
+// 	inputSecond.addEventListener('mousedown', () => {
 
-		let inputTextSecond = new Promise( (response, reject)=>{
-				setTimeout(
-					() => {
-					inputSecond.value.length > 0 ? response(inputSecond.value) : reject(inputSecond.value)
-				}, 10000)
-		});
+// 		let inputTextSecond = new Promise( (response, reject)=>{
+				
+// 					() => {
+// 					inputSecond.value.length = 1 ? response(inputSecond.value) : reject(inputSecond.value)
+// 				}
+// 		});
 		
-		inputTextSecond
-				.then(
-					(data)=>{
-						console.log(data);
-					}
-				)
-				.finally(
-					() => {
-						inputSecond.value = '';
-					}
-				)
+// 		inputTextSecond
+// 				.then(
+					
+// 				)
+// 				.finally(
+// 					() => {
+// 						inputSecond.value = '';
+// 					}
+// 				)
+// 	})
+
+
+// let getFile = (method, file) => {
+// 	return new Promise((resolve, reject) => {
+// 		let xhr = new XMLHttpRequest();
+// 		xhr.open(method,file,true);
+// 		xhr.send();
+
+// 		xhr.addEventListener('readystatechange', () => {
+// 			if(xhr.readyState === 4){
+// 				if(xhr.status <= 400){
+// 					resolve(JSON.parse(xhr.responseText));
+// 				}
+// 				else{
+// 					reject(xhr.statusText);
+// 				}
+// 			}
+// 		});
+// 	});
+// };
+
+// Promise
+// 	   .all([
+// 	   		getFile('GET', 'data.json'),
+// 	   		getFile('GET', 'data2.json')
+// 	   	])
+// 	   .then(
+// 	   		data => {
+// 	   			let newArr = data[0].concat(data[1]);
+// 	   			console.log ( `this it ${newArr}` );
+// 	   			return newArr;
+// 	   		}
+// 	   	)
+
+
+let tempArr = new Array;
+
+let newOne = document.querySelector('#newOne');
+
+newOne.addEventListener("keyup", (ev) => {
+	
+	let newOnePromise = new Promise((resolve, reject)=>{
+		ev.key ? resolve(ev.key) : reject();
 	})
-
-
-let getFile = (method, file) => {
-	return new Promise((resolve, reject) => {
-		let xhr = new XMLHttpRequest();
-		xhr.open(method,file,true);
-		xhr.send();
-
-		xhr.addEventListener('readystatechange', () => {
-			if(xhr.readyState === 4){
-				if(xhr.status <= 400){
-					resolve(JSON.parse(xhr.responseText));
-				}
-				else{
-					reject(xhr.statusText);
-				}
-			}
-		});
-	});
-};
-
-Promise
-	   .all([
-	   		getFile('GET', 'data.json'),
-	   		getFile('GET', 'data2.json')
-	   	])
-	   .then(
-	   		data => {
-	   			let newArr = data[0].concat(data[1]);
-	   			console.log ( `this it ${newArr}` );
-	   			return newArr;
-	   		}
-	   	)
+	
+	newOnePromise
+				.then(
+					data => tempArr.push(data)
+				)
+				.then(
+					newOne.value = ''
+				)
 
 
 
+})
 
-
-
-
+setTimeout(
+	()=>{
+		console.log(tempArr)
+	}, 10000
+	)
 
 
 
